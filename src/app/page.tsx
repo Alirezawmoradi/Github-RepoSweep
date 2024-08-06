@@ -1,5 +1,3 @@
-import {AuthButton} from "@/components/auth-button/auth-button";
-
 export default async function Home() {
     return (
         <>
