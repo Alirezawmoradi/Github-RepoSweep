@@ -11,7 +11,9 @@ export const AuthButton = () => {
                     session?.user?.email ?
                         (<button onClick={() => signOut()}>SignOut</button>)
                         :
-                        (<button onClick={() => signIn()}>SignIn</button>)
+                        (<button onClick={() => signIn('github', {
+                            callbackUrl: '/dashboard'
+                        })}>SignIn</button>)
                 }
             </div>
         </>
