@@ -1,5 +1,6 @@
 import NextAuth from "next-auth"
 import GitHub from "next-auth/providers/github"
+
 declare module "next-auth" {
     interface Session {
         accessToken?: string;
@@ -31,6 +32,19 @@ export const {handlers, signIn, signOut, auth} = NextAuth({
         session: async ({session, token}) => {
             session.accessToken = token.accessToken;
             return session;
+        },
+        authorized: async ({auth, request}) => {
+            const isAuthorized = !!auth?.accessToken;
+
+            const isPrivateRoute = request.nextUrl.pathname.startsWith('/dashboard');
+
+            if (!isAuthorized && isPrivateRoute) {
+                const url = new URL(request.nextUrl)
+                url.pathname = '/'
+                return Response.redirect(url)
+            }
+
+            return true
         }
     }
 })
