@@ -1,19 +1,25 @@
 import {Inter} from "next/font/google";
 import "./globals.css";
-import {Provider} from "@/components/provider/Provider";
+import {auth} from "@/auth";
+import {SessionProvider} from "next-auth/react";
+import {AuthButton} from "@/components/auth-button/auth-button";
 
 const inter = Inter({subsets: ["latin"]});
 
-export default function RootLayout({
-                                       children,
-                                   }: Readonly<{
+export default async function RootLayout({
+                                             children,
+                                         }: Readonly<{
     children: React.ReactNode;
 }>) {
+    const session = await auth()
     return (
-        <Provider>
-            <html lang="en">
-            <body className={inter.className}>{children}</body>
-            </html>
-        </Provider>
+        <html lang="en">
+        <body className={inter.className}>
+        <SessionProvider session={session}>
+            <AuthButton/>
+            {children}
+        </SessionProvider>
+        </body>
+        </html>
     );
 }
