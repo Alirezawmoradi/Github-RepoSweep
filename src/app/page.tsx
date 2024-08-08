@@ -1,8 +1,5 @@
-export default async function Home() {
-    return (
-        <>
-            <div className='flex w-full justify-center items-center'>This is Main Page</div>
-        </>
+import {HeroSection} from "@/components/hero-section/hero-section";
 
-    );
+export default async function Home() {
+    return <HeroSection/>
 }
