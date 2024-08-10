@@ -1,3 +1,39 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@keyframes fadeInOut {
+    0%, 100% {
+        opacity: 1;
+    }
+    25% {
+        opacity: 0.25;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.fadeInOut {
+    animation: fadeInOut 7s ease-in-out infinite;
+    opacity: 0;
+}
+
+@keyframes fly {
+    0% {
+        transform: translateX(0) translateY(0) scale(1);
+    }
+    50% {
+        transform: translateY(43vh) translateX(43vw) scale(1.3);
+    }
+    100%{
+        transform: translateX(45vw) translateY(64vh) scale(1.4);
+    }
+}
+
+.animate-fly {
+    animation: fly 10s forwards;
+}
+
+
+
