@@ -32,7 +32,23 @@
 }
 
 .animate-fly {
-    animation: fly 10s forwards;
+    animation: fly 7s forwards;
+}
+
+.hero-drone{
+    animation: drone 20s linear infinite;
+}
+
+@keyframes drone {
+    0%{
+        transform: translateY(-20px);
+    }
+    50% {
+        transform: translateY(0);
+    }
+    100%{
+        transform: translateY(-20px);
+    }
 }
 
 
