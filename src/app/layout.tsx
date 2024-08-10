@@ -2,6 +2,7 @@ import {Inter} from "next/font/google";
 import "./globals.css";
 import {auth} from "@/auth";
 import {SessionProvider} from "next-auth/react";
+import {Stars} from "@/components/stars";
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -17,6 +18,7 @@ export default async function RootLayout({
         <img className="fixed bottom-0 left-0 w-full h-full object-cover d-block pointer-events-none" width="801"
              height="807" loading="lazy" decoding="async" alt="" aria-hidden="true"
              src="https://github.githubassets.com/images/modules/site/home-campaign/footer-galaxy.jpg"></img>
+        <Stars/>
         <SessionProvider session={session}>
             {children}
         </SessionProvider>
