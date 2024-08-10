@@ -17,7 +17,7 @@ export default async function RootLayout({
         <body className='min-h-screen flex flex-row'>
         <img className="fixed bottom-0 left-0 w-full h-full object-cover d-block pointer-events-none" width="801"
              height="807" loading="lazy" decoding="async" alt="" aria-hidden="true"
-             src="https://github.githubassets.com/images/modules/site/home-campaign/footer-galaxy.jpg"></img>
+             src="https://github.githubassets.com/images/modules/site/home-campaign/footer-galaxy.jpg"/>
         <Stars/>
         <SessionProvider session={session}>
             {children}
