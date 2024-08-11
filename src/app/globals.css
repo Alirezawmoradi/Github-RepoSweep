@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+    html {
+        font-family: var(--font-poppins);
+    }
+}
+
+
 @keyframes fadeInOut {
     0%, 100% {
         opacity: 1;
@@ -26,7 +33,7 @@
     50% {
         transform: translateY(43vh) translateX(43vw) scale(1.3);
     }
-    100%{
+    100% {
         transform: translateX(45vw) translateY(64vh) scale(1.4);
     }
 }
@@ -35,18 +42,18 @@
     animation: fly 7s forwards;
 }
 
-.hero-drone{
+.hero-drone {
     animation: drone 20s linear infinite;
 }
 
 @keyframes drone {
-    0%{
+    0% {
         transform: translateY(-20px);
     }
     50% {
         transform: translateY(0);
     }
-    100%{
+    100% {
         transform: translateY(-20px);
     }
 }
