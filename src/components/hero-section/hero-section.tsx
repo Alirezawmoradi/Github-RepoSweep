@@ -4,25 +4,23 @@ import {AuthButton} from "@/components/auth-button/auth-button";
 import {signIn} from "next-auth/react";
 import {useState} from "react";
 import {Stars} from "@/components/stars/stars";
+import Image from "next/image";
 
 export const HeroSection = () => {
     const [isFlying, setIsFlying] = useState(false);
     const handleGetStartedClick = () => {
         setIsFlying(true);
         setTimeout(() => {
-            signIn('github', { callbackUrl: '/dashboard' });
+            signIn('github', {callbackUrl: '/dashboard'});
         }, 7300);
     };
     return (
         <div className='relative flex flex-col lg:flex-row items-center justify-center overflow-hidden'>
-            <img className="fixed bottom-0 left-0 w-full h-full object-cover d-block pointer-events-none" width="801"
-                 height="807" loading="lazy" decoding="async" alt="" aria-hidden="true"
-                 src="https://github.githubassets.com/images/modules/site/home-campaign/footer-galaxy.jpg"/>
+            <Image src='/images/footer-galaxy.webp' alt='hero-section' width={801} height={807}
+                   className='fixed bottom-0 left-0 w-full h-full object-cover d-block pointer-events-none'/>
             <Stars/>
-            <img
-                className={`max-sm:hidden absolute top-16 w-1/6 h-auto container left-20 xl:right-0 transition-transform duration-1000 ${isFlying ? 'animate-fly' : 'hero-drone'}`}
-                width="500" height="326"
-                src="https://github.githubassets.com/images/modules/site/home-campaign/hero-drone.webp" alt=""/>
+            <Image src='/images/hero-drone.webp' alt='hero-drone' width={500} height={326}
+                   className={`max-sm:hidden absolute top-16 w-1/6 h-auto container left-20 xl:right-0 transition-transform duration-1000 ${isFlying ? 'animate-fly' : 'hero-drone'}`}/>
             <div className='w-screen mx-auto relative z-[2]'>
                 <div className='flex my-8 md:my-16 sm:my-12 relative md:items-center text-center flex-col'>
                     <div className='flex flex-col lg:items-start max-sm:gap-7'>
@@ -46,9 +44,8 @@ export const HeroSection = () => {
                     <Earth/>
                 </div>
                 <div className='flex items-center justify-center relative z-[2] mt-[-200px]'>
-                    <img alt="Mona looking at the galaxy" width="801" height="807"
-                         className="max-sm:hidden pointer-events-none  w-[400px] object-cover h-[403px]"
-                         src="https://github.githubassets.com/images/modules/site/home-campaign/astrocat.png"/>
+                    <Image src='/images/astrocat.png' alt='github' width={801} height={807}
+                           className="max-sm:hidden pointer-events-none  w-[400px] object-cover h-[403px]"/>
                 </div>
             </div>
         </div>
