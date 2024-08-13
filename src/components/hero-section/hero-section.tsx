@@ -3,6 +3,7 @@ import Earth from "@/components/earth/earth";
 import {AuthButton} from "@/components/auth-button/auth-button";
 import {signIn} from "next-auth/react";
 import {useState} from "react";
+import {Stars} from "@/components/stars/stars";
 
 export const HeroSection = () => {
     const [isFlying, setIsFlying] = useState(false);
@@ -14,10 +15,14 @@ export const HeroSection = () => {
     };
     return (
         <div className='relative flex flex-col lg:flex-row items-center justify-center overflow-hidden'>
+            <img className="fixed bottom-0 left-0 w-full h-full object-cover d-block pointer-events-none" width="801"
+                 height="807" loading="lazy" decoding="async" alt="" aria-hidden="true"
+                 src="https://github.githubassets.com/images/modules/site/home-campaign/footer-galaxy.jpg"/>
+            <Stars/>
             <img
                 className={`max-sm:hidden absolute top-16 w-1/6 h-auto container left-20 xl:right-0 transition-transform duration-1000 ${isFlying ? 'animate-fly' : 'hero-drone'}`}
-                 width="500" height="326"
-                 src="https://github.githubassets.com/images/modules/site/home-campaign/hero-drone.webp" alt=""/>
+                width="500" height="326"
+                src="https://github.githubassets.com/images/modules/site/home-campaign/hero-drone.webp" alt=""/>
             <div className='w-screen mx-auto relative z-[2]'>
                 <div className='flex my-8 md:my-16 sm:my-12 relative md:items-center text-center flex-col'>
                     <div className='flex flex-col lg:items-start max-sm:gap-7'>
