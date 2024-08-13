@@ -28,8 +28,8 @@ export const HeroSection = () => {
                             Github RepoSweep
                         </h2>
                         <p className="mb-4 md:text-xl text-[16px] text-[#7d8590] px-4 mx-auto md:w-9/12 text-left max-sm:text-center">
-                            Keep your GitHub workspace clean and organized with RepoCleanse. Whether you’re managing
-                            multiple projects or learning to code, RepoCleanse helps you streamline your repository list
+                            Keep your GitHub workspace clean and organized with RepoSweep. Whether you’re managing
+                            multiple projects or learning to code, RepoSweep helps you streamline your repository list
                             by allowing easy bulk deletion of repositories. Start building from a clutter-free space
                             today.
                         </p>
