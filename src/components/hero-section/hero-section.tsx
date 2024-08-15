@@ -16,8 +16,8 @@ export const HeroSection = () => {
     };
     return (
         <div className='relative flex flex-col lg:flex-row items-center justify-center overflow-hidden'>
-            <Image src='/images/footer-galaxy.webp' alt='hero-section' width={801} height={807}
-                   className='fixed bottom-0 left-0 w-full h-full object-cover d-block pointer-events-none'/>
+            <Image src='/images/footer-galaxy.webp' alt='hero-section' width={1300} height={807}
+                   className='fixed bottom-0 left-0 w-screen min-h-screen object-cover d-block pointer-events-none'/>
             <Stars/>
             <Image src='/images/hero-drone.webp' alt='hero-drone' width={500} height={326}
                    className={`max-sm:hidden absolute top-16 w-1/6 h-auto container left-20 xl:right-0 transition-transform duration-1000 ${isFlying ? 'animate-fly' : 'hero-drone'}`}/>
