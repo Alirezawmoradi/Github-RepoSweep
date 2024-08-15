@@ -1,7 +1,6 @@
 import "./globals.css";
 import {auth} from "@/auth";
 import {SessionProvider} from "next-auth/react";
-import {Stars} from "@/components/stars/stars";
 import {Poppins} from "next/font/google";
 
 const poppins=Poppins({
