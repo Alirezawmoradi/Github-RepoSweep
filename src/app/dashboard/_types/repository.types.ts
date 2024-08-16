@@ -5,4 +5,5 @@ interface Repository {
     description: string | null;
     html_url: string;
     language: string;
+    stargazers_count:number;
 }
