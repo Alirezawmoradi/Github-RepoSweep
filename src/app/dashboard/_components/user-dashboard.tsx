@@ -104,6 +104,7 @@ export const UserDashboard = () => {
                                         isSelected={selectedRepos.has(repo.id)}
                                         language={repo.language} // Pass language to Card
                                         stargazers_count={repo.stargazers_count}
+                                        topics={repo.topics}
                                     />
                                 ))}
                             </div>
