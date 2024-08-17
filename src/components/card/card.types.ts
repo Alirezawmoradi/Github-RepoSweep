@@ -6,5 +6,6 @@ interface CardProps {
     onSelect: () => void;
     isSelected: boolean;
     language: string;
-    stargazers_count: number
+    stargazers_count: number;
+    topics: number[];
 }
