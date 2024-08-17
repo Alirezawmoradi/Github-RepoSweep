@@ -2,9 +2,21 @@
 import React, {useState} from 'react'
 import {motion} from "framer-motion"
 import HoverCard from "@/components/card/hover-card";
+import {Badge} from "@/components/badge";
+import {RepoStars} from "@/components/repo-stars/repo-stars";
 
 
-export const Card = ({name, description, isPrivate, url, onSelect, isSelected, language}: CardProps) => {
+export const Card = ({
+                         name,
+                         description,
+                         isPrivate,
+                         url,
+                         onSelect,
+                         isSelected,
+                         language,
+                         stargazers_count,
+                         topics
+                     }: CardProps) => {
     const [hovered, setHovered] = useState<boolean>(false)
     const [showLang, setShowLang] = useState<boolean>(true)
 
@@ -54,7 +66,7 @@ export const Card = ({name, description, isPrivate, url, onSelect, isSelected, l
                                             <div className="pr-2" key={index + 1}>{index + 1}</div>
                                         ))}
                                     </div>
-                                    <div className='flex flex-col overflow-x-auto text-white rounded-b-md w-full'>
+                                    <div className='flex flex-col overflow-hidden text-white rounded-b-md w-full'>
                                     <pre className=""><span className="code-editor-line-mktg d-inline-block"><span
                                         className="pl-k">import</span> <span className="pl-s1">{language}</span> <span
                                         className="pl-c1">from</span> <span
@@ -131,22 +143,36 @@ export const Card = ({name, description, isPrivate, url, onSelect, isSelected, l
                 {/*        />*/}
                 {/*    </div>*/}
                 {/*</div>*/}
-                <div
-                    className='flex flex-col p-8 sm:p-10 justify-start text-left w-8/12'>
+                <div className='flex flex-col p-8 sm:p-10 justify-start text-left w-8/12'>
                     <div className='flex flex-col mb-32'>
                         <div className='flex flex-row mb-6 justify-start items-center gap-2'>
                             <p className=" text-xl md:text-2xl font-medium text-[#7d8590]">
                                 <span className='text-white font-medium'>{name}</span>
                             </p>
-                            <p className={`text-sm border border-gray-700 px-3 py-1 rounded-3xl ${isPrivate ? 'text-red-500' : 'text-green-500'}`}>{isPrivate ? 'Private' : 'Public'}</p>
+                            <Badge
+                                className={`text-sm border border-gray-700 px-3 py-1 rounded-3xl ${isPrivate ? 'text-red-500' : 'text-green-500'}`}>{isPrivate ? 'Private' : 'Public'}</Badge>
                         </div>
-                        <p className="text-gray-600">{description ? description : 'No description available.'}</p>
+                        <ul className='flex flex-wrap gap-y-2 gap-x-1'>
+
+                            {
+                                topics.map((topic, index) => {
+                                    return <li key={index}>
+                                        <Badge
+                                            className='text-xs bg-blue-700/15 hover:bg-blue-700 cursor-pointer transition-colors duration-300 text-blue-400 hover:text-blue-200 border-gray-700 px-3 py-1 rounded-3xl'>{topic}</Badge>
+                                    </li>
+                                })
+                            }
+                        </ul>
+                        <p className="text-gray-600 mt-10">{description ? description : 'No description available.'}</p>
                     </div>
-                    <div className='flex gap-2 justify-start items-center'>
-                        <p className={`w-3 h-3 rounded-full ${language === 'JavaScript' ? 'bg-yellow-300':language === 'TypeScript' ? 'bg-blue-500':language === 'Dart'?'bg-[#1FB2A5]':''}`}></p>
-                        <p className=' md:text-sm text-gray-300 font-medium inline-block'>
-                            {language}
-                        </p>
+                    <div className='flex gap-2 justify-start items-center cursor-pointer'>
+                        <p className={`w-3 h-3 rounded-full ${language === 'JavaScript' ? 'bg-yellow-300' : language === 'TypeScript' ? 'bg-blue-500' : language === 'Dart' ? 'bg-[#1FB2A5]' : language === 'Python' ? 'bg-[#3572A5]' : language === 'C#' ? 'bg-[#178600]' : language === 'HTML' ? 'bg-[#e34c26]' : language === 'CSS' ? 'bg-[#563d7c]' : language === 'Go' ? 'bg-[#00ADD8]' : ''}`}></p>
+                        <div className='flex justify-center items-center gap-5 text-gray-300 font-medium'>
+                            <p className=' md:text-sm inline-block'>
+                                {language}
+                            </p>
+                            <RepoStars>{stargazers_count}</RepoStars>
+                        </div>
                     </div>
                 </div>
             </div>
