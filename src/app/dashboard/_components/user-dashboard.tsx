@@ -4,6 +4,7 @@ import axios from "axios";
 import {useEffect, useState} from "react";
 import {Card} from "@/components/card/card";
 import {PaginationButton} from "@/components/pagination-button/pagination-button";
+import {useUserProfile} from "@/utils/user-profile-hook/useUserProfile";
 
 
 export const UserDashboard = () => {
@@ -12,6 +13,7 @@ export const UserDashboard = () => {
     const [selectedRepos, setSelectedRepos] = useState<Set<number>>(new Set());
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
+    const userData = useUserProfile(session);
     const reposPerPage = 10;
     useEffect(() => {
         const fetchRepos = async (page: number) => {
@@ -104,7 +106,32 @@ export const UserDashboard = () => {
     return (
         <div className='container grid md:grid-cols-11 grid-rows-[1fr 1fr] pt-56 gap-10 py-10'>
             <div className="col-span-1 xl:col-span-3 pl-10">
+                <div className="flex flex-col items-center text-white">
+                    <img
+                        src={userData?.avatar_url}
+                        alt="Profile Image"
+                        className="w-64 h-64 rounded-full border-4 border-gray-800 shadow-md"
+                    />
+                    <div className="mt-4 text-center">
+                        <p className="text-2xl font-bold">{userData?.login}</p>
+                        <p className="text-gray-400">@{userData?.login}</p>
+                    </div>
+                    <div className="mt-4 text-center text-gray-300">
+                        <p>{userData?.bio}</p>
+                    </div>
 
+                    <div className="mt-6 text-center text-sm">
+                        <p className="flex items-center justify-center">
+                            <span className="ml-2">{userData?.location}</span>
+                        </p>
+                        <p className="mt-2 flex items-center justify-center">
+                            <span className="ml-2">{userData?.email}</span>
+                        </p>
+                        <p className="mt-2 text-gray-400">
+                            {userData?.followers || 0} followers · {userData?.following || 0} following
+                        </p>
+                    </div>
+                </div>
             </div>
 
             <div className='col-span-10 xl:col-span-8'>
@@ -119,7 +146,7 @@ export const UserDashboard = () => {
                                 url={repo.html_url}
                                 onSelect={() => handleSelectRepo(repo.id)}
                                 isSelected={selectedRepos.has(repo.id)}
-                                language={repo.language} // Pass language to Card
+                                language={repo.language}
                                 stargazers_count={repo.stargazers_count}
                                 topics={repo.topics}
                             />
