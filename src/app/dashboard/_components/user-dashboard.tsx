@@ -3,14 +3,18 @@ import {signOut, useSession} from "next-auth/react";
 import axios from "axios";
 import {useEffect, useState} from "react";
 import {Card} from "@/components/card/card";
+import {PaginationButton} from "@/components/pagination-button/pagination-button";
 
 
 export const UserDashboard = () => {
     const {data: session} = useSession();
     const [repos, setRepos] = useState<Repository[]>([]);
     const [selectedRepos, setSelectedRepos] = useState<Set<number>>(new Set());
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
+    const reposPerPage = 10;
     useEffect(() => {
-        const fetchRepos = async () => {
+        const fetchRepos = async (page: number) => {
             if (!session) {
                 console.log("No session found");
                 return;
@@ -22,16 +26,37 @@ export const UserDashboard = () => {
                 const result = await axios.get('https://api.github.com/user/repos', {
                     headers: {
                         Authorization: `Bearer ${session.accessToken}`
+                    },
+                    params: {
+                        page: page,
+                        per_page: reposPerPage,
                     }
                 });
                 console.log('Data:', result.data);
                 setRepos(result.data);
+                const linkHeader = result.headers.link;
+                if (linkHeader) {
+                    const totalPages = extractTotalPages(linkHeader);
+                    setTotalPages(totalPages);
+                }
             } catch (error) {
                 console.log('Error:', error);
             }
         }
-        fetchRepos()
-    }, [session]);
+        fetchRepos(currentPage)
+    }, [session, currentPage]);
+
+    const extractTotalPages = (linkHeader: string) => {
+        const links = linkHeader.split(',').map(link => link.trim());
+        const lastLink = links.find(link => link.includes('rel="last"'));
+        if (lastLink) {
+            const match = lastLink.match(/page=(\d+)/);
+            if (match && match[1]) {
+                return parseInt(match[1], 10);
+            }
+        }
+        return 1;
+    };
 
 
     const handleSelectRepo = (repoId: number) => {
@@ -52,7 +77,7 @@ export const UserDashboard = () => {
             return;
         }
 
-        const username = session.user.name; // GitHub username
+        const username = session.user.name;
         const selectedRepoNames = repos.filter(repo => selectedRepos.has(repo.id)).map(repo => repo.name);
 
         try {
@@ -65,51 +90,57 @@ export const UserDashboard = () => {
             );
             await Promise.all(deletePromises);
 
-            // Remove the repos from the state
             setRepos(repos.filter(repo => !selectedRepos.has(repo.id)));
-            setSelectedRepos(new Set()); // Clear selected repos
+            setSelectedRepos(new Set());
         } catch (error) {
             console.log('Error:', error);
         }
     }
 
+    const paginate = (pageNumber: number) => {
+        setCurrentPage(pageNumber);
+    };
+
     return (
-        <div className='container grid md:grid-cols-10 grid-rows-[1fr 1fr] gap-10 py-10'>
-            <div
-                className="bg-blue-900 pointer-events-none absolute right-0 aspect-square w-1/2   rounded-full opacity-10 blur-3xl"></div>
-            <div className="col-span-1 xl:col-span-2">
-                <div className='w-screen mx-auto relative z-[2] text-white'>
-                    <div className='flex gap-5'>
-                        <p> {session?.user?.name}</p>
-                        <p>{session?.user?.email}</p>
+        <div className='container grid md:grid-cols-11 grid-rows-[1fr 1fr] pt-56 gap-10 py-10'>
+            <div className="col-span-1 xl:col-span-3 pl-10">
+
+            </div>
+
+            <div className='col-span-10 xl:col-span-8'>
+                <div className='flex flex-col px-10  w-full container'>
+                    <div className='relative z-[1] flex flex-col gap-6'>
+                        {repos.map((repo) => (
+                            <Card
+                                key={repo.id}
+                                name={repo.name}
+                                description={repo.description}
+                                isPrivate={repo.private}
+                                url={repo.html_url}
+                                onSelect={() => handleSelectRepo(repo.id)}
+                                isSelected={selectedRepos.has(repo.id)}
+                                language={repo.language} // Pass language to Card
+                                stargazers_count={repo.stargazers_count}
+                                topics={repo.topics}
+                            />
+                        ))}
+                        {repos.length > 0 && (
+                            <div className='flex justify-center mt-10'>
+                                <PaginationButton
+                                    onClick={() => paginate(currentPage - 1)}
+                                    disabled={currentPage === 1}
+                                    text='< Previous'
+                                />
+                                <PaginationButton
+                                    onClick={() => paginate(currentPage + 1)}
+                                    disabled={currentPage === totalPages}
+                                    text='Next >'
+                                />
+                            </div>
+                        )}
                     </div>
-                    <img src={`${session?.user?.image}`} alt='image' width={256} height={256}/>
-                    <div className='flex gap-5'>
-                        <button onClick={handleBulkRemove} disabled={selectedRepos.size === 0}>Remove Selected</button>
-                    </div>
-                    <button onClick={() => signOut()}>sign out</button>
                 </div>
             </div>
-                <div className='col-span-10 xl:col-span-8'>
-                    <div className='flex flex-col px-10 pt-56 w-full container'>
-                            <div className='relative z-[1] flex flex-col gap-6'>
-                                {repos.map((repo) => (
-                                    <Card
-                                        key={repo.id}
-                                        name={repo.name}
-                                        description={repo.description}
-                                        isPrivate={repo.private}
-                                        url={repo.html_url}
-                                        onSelect={() => handleSelectRepo(repo.id)}
-                                        isSelected={selectedRepos.has(repo.id)}
-                                        language={repo.language} // Pass language to Card
-                                        stargazers_count={repo.stargazers_count}
-                                        topics={repo.topics}
-                                    />
-                                ))}
-                            </div>
-                    </div>
-                </div>
         </div>
     )
 }
