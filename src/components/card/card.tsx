@@ -2,8 +2,8 @@
 import React, {useState} from 'react'
 import {motion} from "framer-motion"
 import HoverCard from "@/components/card/hover-card";
-import {Badge} from "@/components/badge";
 import {RepoStars} from "@/components/repo-stars/repo-stars";
+import {Badge} from "@/components/badge/badge";
 
 
 export const Card = ({
