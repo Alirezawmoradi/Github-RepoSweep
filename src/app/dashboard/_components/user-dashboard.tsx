@@ -5,6 +5,7 @@ import {useEffect, useState} from "react";
 import {Card} from "@/components/card/card";
 import {PaginationButton} from "@/components/pagination-button/pagination-button";
 import {useUserProfile} from "@/utils/user-profile-hook/useUserProfile";
+import {DashboardSidebar} from "@/app/dashboard/_components/dashboard-sidebar";
 
 
 export const UserDashboard = () => {
@@ -13,7 +14,6 @@ export const UserDashboard = () => {
     const [selectedRepos, setSelectedRepos] = useState<Set<number>>(new Set());
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
-    const userData = useUserProfile(session);
     const reposPerPage = 10;
     useEffect(() => {
         const fetchRepos = async (page: number) => {
@@ -21,9 +21,6 @@ export const UserDashboard = () => {
                 console.log("No session found");
                 return;
             }
-
-            console.log("Access Token:", session.accessToken);
-
             try {
                 const result = await axios.get('https://api.github.com/user/repos', {
                     headers: {
@@ -105,35 +102,7 @@ export const UserDashboard = () => {
 
     return (
         <div className='container grid md:grid-cols-11 grid-rows-[1fr 1fr] pt-56 gap-10 py-10'>
-            <div className="col-span-1 xl:col-span-3 pl-10">
-                <div className="flex flex-col items-center text-white">
-                    <img
-                        src={userData?.avatar_url}
-                        alt="Profile Image"
-                        className="w-64 h-64 rounded-full border-4 border-gray-800 shadow-md"
-                    />
-                    <div className="mt-4 text-center">
-                        <p className="text-2xl font-bold">{userData?.login}</p>
-                        <p className="text-gray-400">@{userData?.login}</p>
-                    </div>
-                    <div className="mt-4 text-center text-gray-300">
-                        <p>{userData?.bio}</p>
-                    </div>
-
-                    <div className="mt-6 text-center text-sm">
-                        <p className="flex items-center justify-center">
-                            <span className="ml-2">{userData?.location}</span>
-                        </p>
-                        <p className="mt-2 flex items-center justify-center">
-                            <span className="ml-2">{userData?.email}</span>
-                        </p>
-                        <p className="mt-2 text-gray-400">
-                            {userData?.followers || 0} followers · {userData?.following || 0} following
-                        </p>
-                    </div>
-                </div>
-            </div>
-
+            <DashboardSidebar/>
             <div className='col-span-10 xl:col-span-8'>
                 <div className='flex flex-col px-10  w-full container'>
                     <div className='relative z-[1] flex flex-col gap-6'>
