@@ -62,8 +62,7 @@ const HoverCard: React.FC<Props> = ({children, backgroundColor, direction, left}
             onMouseLeave={handleMouseLeave}
             style={{transform: springProps.xys.to(trans)}}
         >
-            <div
-                className={`z-[1] relative bg-[#161b22] h-full border-[#30363d] border-[0.5px] rounded-xl shadow-xl md:flex ${direction} justify-between`}>
+            <div className={`z-[1] relative bg-[#161b22]/90 h-full border-[#30363d] border-[0.5px] rounded-xl shadow-xl md:flex ${direction} justify-between`}>
                 {children}
                 <div
                     className={`absolute w-[500px] border-none  bottom-[50px] h-[1000px] z-[-1] back ${hovered ? "opacity-95" : "opacity-0"} `}
