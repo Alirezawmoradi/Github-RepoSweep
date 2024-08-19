@@ -37,12 +37,12 @@ export const Card = ({
     };
 
     return (
-        <HoverCard backgroundColor='#7ee787' direction='' left='0'>
+        <HoverCard backgroundColor='#939aff' direction='' left='0'>
             <div className='relative flex items-center justify-center gap-5 w-screen overflow-hidden'>
                 <div className='overflow-hidden rounded-s-lg z-[1] flex pl-5 shadow-3xl'>
                     <div
                         className='text-left border-[0.5px] bg-[#161b22] border-[#30363d] rounded-lg text-[#161b22] box-shadow-card md:mt-10 md:ml-0 sm:ml-10 sm:mr-10 mb-16 ml-3 mr-3 '>
-                        <div className='w-96'>
+                        <div className='w-[348px]'>
                             <div className='overflow-x-auto pt-2 px-2 mb-0 border-b-[0.5px] border-[#30363d] '>
                                 <div className='flex items-center bg-[#161b22] text-[#7d8590] tab-nav'>
                                     <button onClick={() => {
@@ -144,7 +144,7 @@ export const Card = ({
                 {/*    </div>*/}
                 {/*</div>*/}
                 <div className='flex flex-col p-8 sm:p-10 justify-start text-left w-8/12'>
-                    <div className='flex flex-col mb-32'>
+                    <div className='flex flex-col mb-32 cursor-default'>
                         <div className='flex flex-row mb-6 justify-start items-center gap-2'>
                             <p className=" text-xl md:text-2xl font-medium text-[#7d8590]">
                                 <span className='text-white font-medium'>{name}</span>
@@ -163,7 +163,7 @@ export const Card = ({
                                 })
                             }
                         </ul>
-                        <p className="text-gray-600 mt-10">{description ? description : 'No description available.'}</p>
+                        <p className="text-gray-500 mt-10">{description ? description : 'No description available.'}</p>
                     </div>
                     <div className='flex gap-2 justify-start items-center cursor-pointer'>
                         <p className={`w-3 h-3 rounded-full ${language === 'JavaScript' ? 'bg-yellow-300' : language === 'TypeScript' ? 'bg-blue-500' : language === 'Dart' ? 'bg-[#1FB2A5]' : language === 'Python' ? 'bg-[#3572A5]' : language === 'C#' ? 'bg-[#178600]' : language === 'HTML' ? 'bg-[#e34c26]' : language === 'CSS' ? 'bg-[#563d7c]' : language === 'Go' ? 'bg-[#00ADD8]' : ''}`}></p>
