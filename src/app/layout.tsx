@@ -18,7 +18,7 @@ export default async function RootLayout({
     const session = await auth()
     return (
         <html lang="en"  className={`${poppins.variable}`}>
-        <body className='min-h-screen'>
+        <body className='min-h-screen bg-hero-pattern bg-center bg-cover bg-no-repeat '>
         <SessionProvider session={session}>
             {children}
         </SessionProvider>
