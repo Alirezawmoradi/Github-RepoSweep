@@ -4,7 +4,6 @@ import axios from "axios";
 import {useEffect, useState} from "react";
 import {Card} from "@/components/card/card";
 import {PaginationButton} from "@/components/pagination-button/pagination-button";
-import {useUserProfile} from "@/utils/user-profile-hook/useUserProfile";
 import {DashboardSidebar} from "@/app/dashboard/_components/dashboard-sidebar";
 
 
