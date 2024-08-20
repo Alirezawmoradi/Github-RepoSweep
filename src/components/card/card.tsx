@@ -4,6 +4,7 @@ import {motion} from "framer-motion"
 import HoverCard from "@/components/card/hover-card";
 import {RepoStars} from "@/components/repo-stars/repo-stars";
 import {Badge} from "@/components/badge/badge";
+import {BsTrash} from "react-icons/bs";
 
 
 export const Card = ({
@@ -165,13 +166,29 @@ export const Card = ({
                         </ul>
                         <p className="text-gray-500 mt-10">{description ? description : 'No description available.'}</p>
                     </div>
-                    <div className='flex gap-2 justify-start items-center cursor-pointer'>
-                        <p className={`w-3 h-3 rounded-full ${language === 'JavaScript' ? 'bg-yellow-300' : language === 'TypeScript' ? 'bg-blue-500' : language === 'Dart' ? 'bg-[#1FB2A5]' : language === 'Python' ? 'bg-[#3572A5]' : language === 'C#' ? 'bg-[#178600]' : language === 'HTML' ? 'bg-[#e34c26]' : language === 'CSS' ? 'bg-[#563d7c]' : language === 'Go' ? 'bg-[#00ADD8]' : ''}`}></p>
-                        <div className='flex justify-center items-center gap-5 text-gray-300 font-medium'>
-                            <p className=' md:text-sm inline-block'>
-                                {language}
-                            </p>
-                            <RepoStars>{stargazers_count}</RepoStars>
+                    <div className='flex justify-between'>
+                        <div className='flex gap-2 justify-start items-center cursor-pointer'>
+                            <p className={`w-3 h-3 rounded-full ${language === 'JavaScript' ? 'bg-yellow-300' : language === 'TypeScript' ? 'bg-blue-500' : language === 'Dart' ? 'bg-[#1FB2A5]' : language === 'Python' ? 'bg-[#3572A5]' : language === 'C#' ? 'bg-[#178600]' : language === 'HTML' ? 'bg-[#e34c26]' : language === 'CSS' ? 'bg-[#563d7c]' : language === 'Go' ? 'bg-[#00ADD8]' : ''}`}></p>
+                            <div className='flex justify-center items-center gap-5 text-gray-300 font-medium'>
+                                <p className=' md:text-sm inline-block'>
+                                    {language}
+                                </p>
+                                <RepoStars>{stargazers_count}</RepoStars>
+                            </div>
+                        </div>
+                        <div className="relative cursor-pointer" onClick={onSelect}>
+                            <input
+                                type="checkbox"
+                                id='delete-checkbox'
+                                checked={isSelected}
+                                onChange={onSelect}
+                                className="h-5 w-5 appearance-none"
+                            />
+                            <BsTrash
+                                className={`h-5 w-5 bottom-1 text-2xl absolute transition ${
+                                    isSelected ? 'text-red-500' : 'text-gray-400'
+                                }`}
+                            />
                         </div>
                     </div>
                 </div>
