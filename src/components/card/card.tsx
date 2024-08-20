@@ -4,7 +4,7 @@ import {motion} from "framer-motion"
 import HoverCard from "@/components/card/hover-card";
 import {RepoStars} from "@/components/repo-stars/repo-stars";
 import {Badge} from "@/components/badge/badge";
-import {BsTrash} from "react-icons/bs";
+import {Checkbox} from "@/components/checkbox/checkbox";
 
 
 export const Card = ({
@@ -36,6 +36,8 @@ export const Card = ({
         hidden: {opacity: 0},
         show: {opacity: 1, transition: {type: 'tween'}},
     };
+
+    console.log(isSelected,onSelect)
 
     return (
         <HoverCard backgroundColor='#939aff' direction='' left='0'>
@@ -177,18 +179,7 @@ export const Card = ({
                             </div>
                         </div>
                         <div className="relative cursor-pointer" onClick={onSelect}>
-                            <input
-                                type="checkbox"
-                                id='delete-checkbox'
-                                checked={isSelected}
-                                onChange={onSelect}
-                                className="h-5 w-5 appearance-none"
-                            />
-                            <BsTrash
-                                className={`h-5 w-5 bottom-1 text-2xl absolute transition ${
-                                    isSelected ? 'text-red-500' : 'text-gray-400'
-                                }`}
-                            />
+                            <Checkbox onSelect={onSelect} isSelected={isSelected}/>
                         </div>
                     </div>
                 </div>
