@@ -42,7 +42,7 @@ const HoverCard: React.FC<Props> = ({children, backgroundColor, direction, left}
         ((coordinate / containerSize) * (containerSize - itemSize));
 
     const translateX = typeof window !== 'undefined' ? calcTranslate(cursorCoords.x, window.innerWidth, 1000) : 0;
-    const translateY = typeof window !== 'undefined' ? calcTranslate(cursorCoords.y, window.innerHeight, 200) : 0;
+    const translateY = typeof window !== 'undefined' ? calcTranslate(cursorCoords.y, window.innerHeight, 400) : 0;
 
     const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
         const {clientX: x, clientY: y} = event;
