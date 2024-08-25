@@ -5,15 +5,29 @@ import {useEffect, useState} from "react";
 import {Card} from "@/components/card/card";
 import {PaginationButton} from "@/components/pagination-button/pagination-button";
 import {DashboardSidebar} from "@/app/dashboard/_components/dashboard-sidebar";
+import {useRepoStore} from "@/stores/repository/useRepoStore";
 
 
 export const UserDashboard = () => {
     const {data: session} = useSession();
-    const [repos, setRepos] = useState<Repository[]>([]);
-    const [selectedRepos, setSelectedRepos] = useState<Set<number>>(new Set());
-    const [currentPage, setCurrentPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(1);
+
+    const {
+        repos,
+        selectedRepos,
+        currentPage,
+        totalPages,
+    } = useRepoStore();
+
+    const {
+        setRepos,
+        handleSelectRepo,
+        setCurrentPage,
+        setTotalPages,
+        handleBulkRemove
+    } = useRepoStore((state) => state.actions);
+
     const reposPerPage = 10;
+
     useEffect(() => {
         const fetchRepos = async (page: number) => {
             if (!session) {
@@ -57,66 +71,22 @@ export const UserDashboard = () => {
     };
 
 
-    const handleSelectRepo = (repoId: number) => {
-        setSelectedRepos(prev => {
-            const updated = new Set(prev);
-            if (updated.has(repoId)) {
-                updated.delete(repoId);
-            } else {
-                updated.add(repoId);
-            }
-            return updated;
-        });
-    };
-
-    const handleBulkRemove = async () => {
-        if (!session || !session.accessToken || !session.user?.name) {
-            console.log("No session, access token, or user name found");
-            return;
-        }
-
-        const username = session.user.name;
-        const selectedRepoNames = repos.filter(repo => selectedRepos.has(repo.id)).map(repo => repo.name);
-
-        try {
-            const deletePromises = selectedRepoNames.map(repoName =>
-                axios.delete(`https://api.github.com/repos/${username}/${repoName}`, {
-                    headers: {
-                        Authorization: `Bearer ${session.accessToken}`
-                    }
-                })
-            );
-            await Promise.all(deletePromises);
-
-            setRepos(repos.filter(repo => !selectedRepos.has(repo.id)));
-            setSelectedRepos(new Set());
-        } catch (error) {
-            console.log('Error:', error);
-        }
-    }
-
     const paginate = (pageNumber: number) => {
         setCurrentPage(pageNumber);
     };
 
     return (
         <div className='container grid md:grid-cols-11 grid-rows-[1fr 1fr] pt-56 gap-10 py-10'>
-            <DashboardSidebar/>
+            <DashboardSidebar removeRepo={()=>handleBulkRemove(session,repos)}/>
             <div className='col-span-10 xl:col-span-8'>
                 <div className='flex flex-col px-10  w-full container'>
                     <div className='relative z-[1] flex flex-col gap-6'>
                         {repos.map((repo) => (
                             <Card
                                 key={repo.id}
-                                name={repo.name}
-                                description={repo.description}
-                                isPrivate={repo.private}
-                                url={repo.html_url}
+                                {...repo}
                                 onSelect={() => handleSelectRepo(repo.id)}
                                 isSelected={selectedRepos.has(repo.id)}
-                                language={repo.language}
-                                stargazers_count={repo.stargazers_count}
-                                topics={repo.topics}
                             />
                         ))}
                         {repos.length > 0 && (
