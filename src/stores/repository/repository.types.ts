@@ -1,3 +1,5 @@
+import {Session} from "next-auth";
+
 interface Repository {
     name: string;
     id: number;
@@ -9,7 +11,7 @@ interface Repository {
     topics: number[];
 }
 
-interface RepoState {
+export interface RepoState {
     repos: Repository[];
     selectedRepos: Set<number>;
     currentPage: number;
@@ -20,5 +22,6 @@ interface RepoState {
         removeSelectedRepos: () => void;
         setCurrentPage: (page: number) => void;
         setTotalPages: (totalPages: number) => void;
+        handleBulkRemove: (session: Session | null, repos: Repository[]) => Promise<void>;
     }
 }
