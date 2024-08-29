@@ -1,11 +1,14 @@
 import React from "react";
 import {useUserProfile} from "@/utils/user-profile-hook/useUserProfile";
-import {Session} from "next-auth";
 import {useSession} from "next-auth/react";
+import {useModalStore} from "@/stores/modal/useModalStore";
+
 
 export const DashboardSidebar: React.FC = () => {
     const {data: session} = useSession();
     const userData = useUserProfile(session);
+    const {openModal} = useModalStore((state) => state.actions);
+
 
     return <aside className="col-span-1 xl:col-span-3 pl-10 sticky top-20 h-screen">
         <div className="flex flex-col items-center text-white">
@@ -31,6 +34,14 @@ export const DashboardSidebar: React.FC = () => {
                 <p className="mt-2 text-gray-400">
                     {userData?.followers || 0} followers · {userData?.following || 0} following
                 </p>
+                <div className="flex justify-between mt-10">
+                    <button
+                        onClick={openModal}
+                        className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
+                    >
+                        Bulk Remove Selected
+                    </button>
+                </div>
             </div>
         </div>
     </aside>
