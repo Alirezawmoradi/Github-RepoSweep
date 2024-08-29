@@ -1,7 +1,7 @@
 'use client';
 import {signOut, useSession} from "next-auth/react";
 import axios from "axios";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {Card} from "@/components/card/card";
 import {PaginationButton} from "@/components/pagination-button/pagination-button";
 import {DashboardSidebar} from "@/app/dashboard/_components/dashboard-sidebar";
