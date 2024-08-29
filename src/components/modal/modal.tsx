@@ -2,7 +2,6 @@ import React from "react";
 import {useRepoStore} from "@/stores/repository/useRepoStore";
 import {useSession} from "next-auth/react";
 import {useModalStore} from "@/stores/modal/useModalStore";
-import {id} from "postcss-selector-parser";
 
 export const Modal: React.FC = () => {
     const {data: session} = useSession();
