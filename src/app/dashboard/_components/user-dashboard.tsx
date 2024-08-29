@@ -6,6 +6,7 @@ import {Card} from "@/components/card/card";
 import {PaginationButton} from "@/components/pagination-button/pagination-button";
 import {DashboardSidebar} from "@/app/dashboard/_components/dashboard-sidebar";
 import {useRepoStore} from "@/stores/repository/useRepoStore";
+import {Modal} from "@/components/modal/modal";
 
 
 export const UserDashboard = () => {
@@ -23,7 +24,6 @@ export const UserDashboard = () => {
         handleSelectRepo,
         setCurrentPage,
         setTotalPages,
-        handleBulkRemove
     } = useRepoStore((state) => state.actions);
 
     const reposPerPage = 10;
@@ -77,10 +77,10 @@ export const UserDashboard = () => {
 
     return (
         <div className='container grid md:grid-cols-11 grid-rows-[1fr 1fr] pt-56 gap-10 py-10'>
-            <DashboardSidebar removeRepo={()=>handleBulkRemove(session,repos)}/>
+            <DashboardSidebar/>
             <div className='col-span-10 xl:col-span-8'>
                 <div className='flex flex-col px-10  w-full container'>
-                    <div className='relative z-[1] flex flex-col gap-6'>
+                    <div className='relative  flex flex-col gap-6'>
                         {repos.map((repo) => (
                             <Card
                                 key={repo.id}
@@ -106,6 +106,7 @@ export const UserDashboard = () => {
                     </div>
                 </div>
             </div>
+            <Modal/>
         </div>
     )
 }
