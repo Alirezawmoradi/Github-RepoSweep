@@ -2,12 +2,14 @@ import React from "react";
 import {useUserProfile} from "@/utils/user-profile-hook/useUserProfile";
 import {useSession} from "next-auth/react";
 import {useModalStore} from "@/stores/modal/useModalStore";
+import {useRepoStore} from "@/stores/repository/useRepoStore";
 
 
 export const DashboardSidebar: React.FC = () => {
     const {data: session} = useSession();
     const userData = useUserProfile(session);
     const {openModal} = useModalStore((state) => state.actions);
+    const selectedRepoCount = useRepoStore((state) => state.selectedRepos.size);
 
 
     return <aside className="col-span-1 xl:col-span-3 pl-10 sticky top-20 h-screen">
@@ -34,12 +36,19 @@ export const DashboardSidebar: React.FC = () => {
                 <p className="mt-2 text-gray-400">
                     {userData?.followers || 0} followers · {userData?.following || 0} following
                 </p>
-                <div className="flex justify-between mt-10">
+                <div className="flex justify-between mt-10 relative">
                     <button
                         onClick={openModal}
                         className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
                     >
                         Bulk Remove Selected
+                        {
+                            selectedRepoCount > 0 && (
+                                <span
+                                    className="absolute top-0 right-0 bg-white text-red-500 rounded-full px-2 text-xs font-bold translate-x-1/2 -translate-y-1/2">
+                                    {selectedRepoCount}
+                                </span>
+                            )}
                     </button>
                 </div>
             </div>
