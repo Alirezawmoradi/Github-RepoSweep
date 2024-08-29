@@ -1,5 +1,6 @@
 import NextAuth from "next-auth"
 import GitHub from "next-auth/providers/github"
+import {clientId, clientSecret} from "@/configs/global";
 
 declare module "next-auth" {
     interface Session {
@@ -14,8 +15,8 @@ declare module "@auth/core/jwt" {
 }
 export const {handlers, signIn, signOut, auth} = NextAuth({
     providers: [GitHub({
-        clientId: process.env.AUTH_GITHUB_ID,
-        clientSecret: process.env.AUTH_GITHUB_SECRET,
+        clientId: clientId,
+        clientSecret: clientSecret,
         authorization: {
             params: {
                 scope: 'read:user user:email repo delete_repo',
