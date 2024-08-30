@@ -5,6 +5,7 @@ import {signIn} from "next-auth/react";
 import {useState} from "react";
 import {Stars} from "@/components/stars/stars";
 import Image from "next/image";
+import {AnimatedLand} from "@/components/animated-land/animated-land";
 
 export const HeroSection = () => {
     const [isFlying, setIsFlying] = useState(false);
@@ -15,13 +16,14 @@ export const HeroSection = () => {
         }, 7300);
     };
     return (
-        <div className='relative flex flex-col lg:flex-row items-center justify-center overflow-hidden'>
+        <div className='relative flex flex-col lg:flex-row items-center justify-center overflow-hidden h-screen'>
             <Stars/>
+            <AnimatedLand/>
             <Image src='/images/hero-drone.webp' alt='hero-drone' width={500} height={326}
                    className={`max-sm:hidden absolute top-16 w-1/6 h-auto container left-20 xl:right-0 transition-transform duration-1000 ${isFlying ? 'animate-fly' : 'hero-drone'}`}/>
-            <div className='w-screen mx-auto relative z-[2]'>
+            <div className='w-screen mx-auto relative z-[2] mt-8'>
                 <div className='flex my-8 md:my-16 sm:my-12 relative md:items-center text-center flex-col'>
-                    <div className='flex flex-col lg:items-start max-sm:gap-7'>
+                    <div className='flex flex-col lg:items-start max-sm:gap-7 gap-5'>
                         <h2 className='px-4 mb-4 md:w-9/12 mx-auto lg:text-5xl md:text-4xl text-3xl font-bold text-white text-left'>
                             Github RepoSweep
                         </h2>
