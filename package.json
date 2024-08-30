@@ -14,6 +14,7 @@
     "@tsparticles/react": "^3.0.0",
     "axios": "^1.7.2",
     "cobe": "^0.6.3",
+    "colord": "^2.9.3",
     "framer-motion": "^11.3.24",
     "next": "14.2.5",
     "next-auth": "^5.0.0-beta.19",
