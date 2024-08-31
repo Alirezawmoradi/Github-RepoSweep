@@ -24,7 +24,7 @@ export const HeroSection = () => {
             <div className='w-screen mx-auto relative z-[2] mt-8'>
                 <div className='flex my-8 md:my-16 sm:my-12 relative md:items-center text-center flex-col'>
                     <div className='flex flex-col lg:items-start max-sm:gap-7 gap-5'>
-                        <h2 className='px-4 mb-4 md:w-9/12 mx-auto lg:text-5xl md:text-4xl text-3xl font-bold text-white text-left'>
+                        <h2 className='px-4 mb-4 md:w-9/12 mx-auto lg:text-5xl md:text-4xl text-3xl font-bold text-white text-left gradient cursor-default'>
                             Github RepoSweep
                         </h2>
                         <p className="mb-4 md:text-xl text-[16px] text-[#7d8590] px-4 mx-auto md:w-9/12 text-left max-sm:text-center">
