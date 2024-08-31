@@ -2,7 +2,7 @@
 
 import {useState} from "react";
 import Lottie from "lottie-react";
-import animatedLogo from '../../../public/Animation - 1725117489910.json'
+import animatedLogo from '../../../public/Animated-Github.json'
 
 export const AuthButton = ({text, onClick}: AuthButtonProps) => {
     const [hovered, setHovered] = useState<boolean>(false)
