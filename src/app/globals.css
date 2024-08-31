@@ -8,6 +8,10 @@
     }
 }
 
+.gradient {
+    @apply bg-gradient-to-r from-[#34eaa0] to-[#0fa2e9] text-transparent bg-clip-text
+}
+
 
 @keyframes fadeInOut {
     0%, 100% {
