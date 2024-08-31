@@ -13,7 +13,7 @@ export const AuthButton = ({text, onClick}: AuthButtonProps) => {
                onClick={onClick}
                className='flex items-center bg-white cursor-pointer hover:bg-gray-300 transition-colors duration-300 font-bold px-14 py-3 justify-center rounded-md text-[20px]'>
                 {text}
-                <Lottie animationData={animatedLogo}  className={`w-8 ml-3 transition ease-in duration-150 ${hovered ? "translate-x-2 " : "-translate-x-0"}`}/>
+                <Lottie animationData={animatedLogo}  className={`w-6 ml-3 transition ease-in duration-150 ${hovered ? "translate-x-2 " : "-translate-x-0"}`}/>
             </button>
         </div>
     )
