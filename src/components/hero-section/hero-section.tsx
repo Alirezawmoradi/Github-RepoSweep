@@ -6,6 +6,7 @@ import {useState} from "react";
 import {Stars} from "@/components/stars/stars";
 import Image from "next/image";
 import {AnimatedLand} from "@/components/animated-land/animated-land";
+import {Info} from "@/components/info/info";
 
 export const HeroSection = () => {
     const [isFlying, setIsFlying] = useState(false);
@@ -35,6 +36,9 @@ export const HeroSection = () => {
                         </p>
                         <div className='lg:text-left lg:px-24'>
                             <AuthButton text='Get Started' onClick={handleGetStartedClick}/>
+                        </div>
+                        <div className='lg:text-left lg:px-28 mt-1'>
+                            <Info/>
                         </div>
                     </div>
                 </div>
