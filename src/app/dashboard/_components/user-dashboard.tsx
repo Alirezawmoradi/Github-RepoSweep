@@ -76,37 +76,49 @@ export const UserDashboard = () => {
     };
 
     return (
-        <div className='container grid md:grid-cols-11 grid-rows-[1fr 1fr] pt-56 gap-10 py-10'>
-            <DashboardSidebar/>
-            <div className='col-span-10 xl:col-span-8'>
-                <div className='flex flex-col px-10  w-full container'>
-                    <div className='relative  flex flex-col gap-6'>
-                        {repos.map((repo) => (
-                            <Card
-                                key={repo.id}
-                                {...repo}
-                                onSelect={() => handleSelectRepo(repo.id)}
-                                isSelected={selectedRepos.has(repo.id)}
-                            />
-                        ))}
-                        {repos.length > 0 && (
-                            <div className='flex justify-center mt-10'>
-                                <PaginationButton
-                                    onClick={() => paginate(currentPage - 1)}
-                                    disabled={currentPage === 1}
-                                    text='< Previous'
+        <>
+            {/*<section className='flex flex-col justify-center items-center container mx-auto px-4"'>*/}
+            {/*    <h1 className="text-3xl text-white font-bold mb-6">Welcome to Your*/}
+            {/*        Dashboard, {session?.user?.name}!</h1>*/}
+            {/*    <p className="text-lg text-gray-600 mb-10">*/}
+            {/*        Here you can manage your GitHub repositories. You can select repositories to bulk remove them,*/}
+            {/*        navigate*/}
+            {/*        through*/}
+            {/*        your repos, and more.*/}
+            {/*    </p>*/}
+            {/*</section>*/}
+            <div className='container grid md:grid-cols-11 grid-rows-[1fr 1fr] pt-32 gap-10 py-10'>
+                <DashboardSidebar/>
+                <div className='col-span-10 xl:col-span-8'>
+                    <div className='flex flex-col px-10  w-full container'>
+                        <div className='relative  flex flex-col gap-6'>
+                            {repos.map((repo) => (
+                                <Card
+                                    key={repo.id}
+                                    {...repo}
+                                    onSelect={() => handleSelectRepo(repo.id)}
+                                    isSelected={selectedRepos.has(repo.id)}
                                 />
-                                <PaginationButton
-                                    onClick={() => paginate(currentPage + 1)}
-                                    disabled={currentPage === totalPages}
-                                    text='Next >'
-                                />
-                            </div>
-                        )}
+                            ))}
+                            {repos.length > 0 && (
+                                <div className='flex justify-center mt-10'>
+                                    <PaginationButton
+                                        onClick={() => paginate(currentPage - 1)}
+                                        disabled={currentPage === 1}
+                                        text='< Previous'
+                                    />
+                                    <PaginationButton
+                                        onClick={() => paginate(currentPage + 1)}
+                                        disabled={currentPage === totalPages}
+                                        text='Next >'
+                                    />
+                                </div>
+                            )}
+                        </div>
                     </div>
                 </div>
+                <Modal/>
             </div>
-            <Modal/>
-        </div>
+        </>
     )
 }
