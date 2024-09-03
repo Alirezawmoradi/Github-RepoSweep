@@ -1,5 +1,5 @@
 'use client';
-import {signOut, useSession} from "next-auth/react";
+import {useSession} from "next-auth/react";
 import axios from "axios";
 import {useEffect} from "react";
 import {Card} from "@/components/card/card";
