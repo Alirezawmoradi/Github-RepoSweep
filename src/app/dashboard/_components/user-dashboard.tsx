@@ -77,16 +77,6 @@ export const UserDashboard = () => {
 
     return (
         <>
-            {/*<section className='flex flex-col justify-center items-center container mx-auto px-4"'>*/}
-            {/*    <h1 className="text-3xl text-white font-bold mb-6">Welcome to Your*/}
-            {/*        Dashboard, {session?.user?.name}!</h1>*/}
-            {/*    <p className="text-lg text-gray-600 mb-10">*/}
-            {/*        Here you can manage your GitHub repositories. You can select repositories to bulk remove them,*/}
-            {/*        navigate*/}
-            {/*        through*/}
-            {/*        your repos, and more.*/}
-            {/*    </p>*/}
-            {/*</section>*/}
             <div className='container grid md:grid-cols-11 grid-rows-[1fr 1fr] pt-32 gap-10 py-10'>
                 <DashboardSidebar/>
                 <div className='col-span-10 xl:col-span-8'>
