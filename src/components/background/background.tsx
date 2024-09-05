@@ -7,6 +7,7 @@ export const Background = (props: React.SVGProps<SVGSVGElement>) => (
             position: "fixed",
             width: "100%",
             bottom: 0,
+            zIndex:-1
         }}
         viewBox="0 0 1442 997"
         fill="none"
