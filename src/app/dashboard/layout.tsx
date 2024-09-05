@@ -1,6 +1,5 @@
 import {ReactNode} from "react";
 import {Background} from "@/components/background/background";
-import {DashboardHeroSection} from "@/app/dashboard/_components/dashboard-hero-section";
 
 export default function DashboardLayout({children}: { children: ReactNode }) {
     return (
