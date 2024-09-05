@@ -1,12 +1,14 @@
 'use client';
 import {useSession} from "next-auth/react";
 import axios from "axios";
-import {useEffect} from "react";
+import React, {useEffect} from "react";
 import {Card} from "@/components/card/card";
 import {PaginationButton} from "@/components/pagination-button/pagination-button";
 import {DashboardSidebar} from "@/app/dashboard/_components/dashboard-sidebar";
 import {useRepoStore} from "@/stores/repository/useRepoStore";
 import {Modal} from "@/components/modal/modal";
+import {TextAnimation} from "@/components/text-animation/text-animation";
+import {AnimatedPlanet} from "@/components/animated-planet/animated-planet";
 
 
 export const UserDashboard = () => {
@@ -77,7 +79,17 @@ export const UserDashboard = () => {
 
     return (
         <>
-            <div className='container grid md:grid-cols-11 grid-rows-[1fr 1fr] pt-32 gap-10 py-10'>
+            <section className='flex container flex-col mx-auto mt-10'>
+                <div className='flex justify-center items-center'>
+                    <h1 className="text-white font-bold mb-6">
+                        <TextAnimation text={`  Welcome to Your Dashboard, ${session?.user?.name}!`}/>
+                    </h1>
+                </div>
+                <div className='ml-10'>
+                    <AnimatedPlanet/>
+                </div>
+            </section>
+            <div className='container grid md:grid-cols-11 grid-rows-[1fr 1fr] pt-20 gap-10 py-10'>
                 <DashboardSidebar/>
                 <div className='col-span-10 xl:col-span-8'>
                     <div className='flex flex-col px-10  w-full container'>
