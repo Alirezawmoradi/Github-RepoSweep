@@ -1,5 +1,4 @@
 import {ReactNode} from "react";
-import {Background} from "@/components/background/background";
 
 export default function DashboardLayout({children}: { children: ReactNode }) {
     return (
@@ -7,7 +6,6 @@ export default function DashboardLayout({children}: { children: ReactNode }) {
             <div className="relative z-10">
                 {children}
             </div>
-            <Background/>
         </main>
     )
 }
