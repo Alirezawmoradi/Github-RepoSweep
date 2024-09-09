@@ -103,7 +103,7 @@ export const UserDashboard = () => {
                                     />
                                     <PaginationButton
                                         onClick={() => paginate(currentPage + 1)}
-                                        disabled={currentPage === totalPages}
+                                        disabled={currentPage >= totalPages}
                                         text='Next >'
                                     />
                                 </div>
