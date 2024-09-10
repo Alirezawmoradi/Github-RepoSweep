@@ -73,8 +73,10 @@ export const UserDashboard = () => {
     };
 
 
-    const paginate = (pageNumber: number) => {
+    const paginate = async (pageNumber: number) => {
         setCurrentPage(pageNumber);
+        await new Promise((resolve) => setTimeout(resolve, 100));
+        window.scrollTo({top: 0, behavior: 'smooth'});
     };
 
     return (
