@@ -44,6 +44,8 @@ export const UserDashboard = () => {
                     params: {
                         page: page,
                         per_page: reposPerPage,
+                        sort: 'updated',
+                        direction: 'desc',
                     }
                 });
                 console.log('Data:', result.data);
