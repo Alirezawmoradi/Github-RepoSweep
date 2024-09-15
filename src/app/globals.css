@@ -128,3 +128,20 @@
             calc(cos(var(--progress) * 6.28rad) * var(--radius-y))
     );
 }
+
+@keyframes pulse {
+    0% {
+        opacity: 0.7;
+    }
+    50% {
+        opacity: 0.4;
+    }
+    100% {
+        opacity: 0.7;
+    }
+}
+
+.skeleton-text {
+    animation: pulse 1.5s infinite;
+}
+
