@@ -9,6 +9,8 @@ import {useRepoStore} from "@/stores/repository/useRepoStore";
 import {Modal} from "@/components/modal/modal";
 import {Background} from "@/components/background/background";
 import {Header} from "@/components/header/header";
+import {useLoadingStore} from "@/stores/loading/useLoadingStore";
+import SkeletonCard from "@/components/loading/skeleton-card/skeleton-card";
 
 
 export const UserDashboard = () => {
@@ -28,6 +30,10 @@ export const UserDashboard = () => {
         setTotalPages,
     } = useRepoStore((state) => state.actions);
 
+    const {loading} = useLoadingStore();
+
+    const {setLoading} = useLoadingStore((state) => state.actions);
+
     const reposPerPage = 10;
 
     useEffect(() => {
@@ -37,6 +43,7 @@ export const UserDashboard = () => {
                 return;
             }
             try {
+                setLoading(true)
                 const result = await axios.get('https://api.github.com/user/repos', {
                     headers: {
                         Authorization: `Bearer ${session.accessToken}`
@@ -57,6 +64,8 @@ export const UserDashboard = () => {
                 }
             } catch (error) {
                 console.log('Error:', error);
+            } finally {
+                setLoading(false);
             }
         }
         fetchRepos(currentPage)
@@ -89,16 +98,21 @@ export const UserDashboard = () => {
                 <DashboardSidebar/>
                 <div className='col-span-10 xl:col-span-8'>
                     <div className='flex flex-col px-10  w-full container'>
-                        <div className='relative  flex flex-col gap-6'>
-                            {repos.map((repo) => (
-                                <Card
-                                    key={repo.id}
-                                    {...repo}
-                                    onSelect={() => handleSelectRepo(repo.id)}
-                                    isSelected={selectedRepos.has(repo.id)}
-                                />
-                            ))}
-                            {repos.length > 0 && (
+                        <div className='relative flex flex-col gap-6'>
+                            {loading ?
+                                Array.from({length: 10}, (_, index) => (
+                                    <SkeletonCard key={index}/>
+                                ))
+                                :
+                                repos.map((repo) => (
+                                    <Card
+                                        key={repo.id}
+                                        {...repo}
+                                        onSelect={() => handleSelectRepo(repo.id)}
+                                        isSelected={selectedRepos.has(repo.id)}
+                                    />
+                                ))}
+                            {!loading && repos.length > 0 && (
                                 <div className='flex justify-center mt-10'>
                                     <PaginationButton
                                         onClick={() => paginate(currentPage - 1)}
