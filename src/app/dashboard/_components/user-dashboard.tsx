@@ -1,7 +1,6 @@
 'use client';
 import {useSession} from "next-auth/react";
-import axios from "axios";
-import React, {useEffect} from "react";
+import React from "react";
 import {Card} from "@/components/card/card";
 import {PaginationButton} from "@/components/pagination-button/pagination-button";
 import {DashboardSidebar} from "@/app/dashboard/_components/dashboard-sidebar";
@@ -11,78 +10,18 @@ import {Background} from "@/components/background/background";
 import {Header} from "@/components/header/header";
 import {useLoadingStore} from "@/stores/loading/useLoadingStore";
 import SkeletonCard from "@/components/loading/skeleton-card/skeleton-card";
+import {useUserData} from "@/utils/user-profile-hook/useUserData";
 
 
 export const UserDashboard = () => {
     const {data: session} = useSession();
 
-    const {
-        repos,
-        selectedRepos,
-        currentPage,
-        totalPages,
-    } = useRepoStore();
+    const {currentPage, selectedRepos, totalPages} = useRepoStore();
+    const {handleSelectRepo, setCurrentPage} = useRepoStore((state) => state.actions);
 
-    const {
-        setRepos,
-        handleSelectRepo,
-        setCurrentPage,
-        setTotalPages,
-    } = useRepoStore((state) => state.actions);
+    const {loading, initialLoad} = useLoadingStore();
 
-    const {loading} = useLoadingStore();
-
-    const {setLoading} = useLoadingStore((state) => state.actions);
-
-    const reposPerPage = 10;
-
-    useEffect(() => {
-        const fetchRepos = async (page: number) => {
-            if (!session) {
-                console.log("No session found");
-                return;
-            }
-            try {
-                setLoading(true)
-                const result = await axios.get('https://api.github.com/user/repos', {
-                    headers: {
-                        Authorization: `Bearer ${session.accessToken}`
-                    },
-                    params: {
-                        page: page,
-                        per_page: reposPerPage,
-                        sort: 'updated',
-                        direction: 'desc',
-                    }
-                });
-                console.log('Data:', result.data);
-                setRepos(result.data);
-                const linkHeader = result.headers.link;
-                if (linkHeader) {
-                    const totalPages = extractTotalPages(linkHeader);
-                    setTotalPages(totalPages);
-                }
-            } catch (error) {
-                console.log('Error:', error);
-            } finally {
-                setLoading(false);
-            }
-        }
-        fetchRepos(currentPage)
-    }, [session, currentPage]);
-
-    const extractTotalPages = (linkHeader: string) => {
-        const links = linkHeader.split(',').map(link => link.trim());
-        const lastLink = links.find(link => link.includes('rel="last"'));
-        if (lastLink) {
-            const match = lastLink.match(/page=(\d+)/);
-            if (match && match[1]) {
-                return parseInt(match[1], 10);
-            }
-        }
-        return 1;
-    };
-
+    const {repos} = useUserData(session, currentPage);
 
     const paginate = async (pageNumber: number) => {
         setCurrentPage(pageNumber);
@@ -99,7 +38,7 @@ export const UserDashboard = () => {
                 <div className='col-span-10 xl:col-span-8'>
                     <div className='flex flex-col px-10  w-full container'>
                         <div className='relative flex flex-col gap-6'>
-                            {loading ?
+                            {loading && initialLoad ?
                                 Array.from({length: 10}, (_, index) => (
                                     <SkeletonCard key={index}/>
                                 ))
@@ -112,8 +51,9 @@ export const UserDashboard = () => {
                                         isSelected={selectedRepos.has(repo.id)}
                                     />
                                 ))}
-                            {!loading && repos.length > 0 && (
-                                <div className='flex justify-center mt-10'>
+                            {repos.length > 0 && (
+                                <div
+                                    className={`flex justify-center mt-10 ${loading && initialLoad ? 'hidden' : 'block'}`}>
                                     <PaginationButton
                                         onClick={() => paginate(currentPage - 1)}
                                         disabled={currentPage === 1}
