@@ -3,7 +3,7 @@ import React from "react";
 import {TextAnimation} from "@/components/text-animation/text-animation";
 import {AnimatedPlanet} from "@/components/animated-planet/animated-planet";
 import {useSession} from "next-auth/react";
-import {useUserProfile} from "@/utils/user-profile-hook/useUserProfile";
+import {useUserData} from "@/utils/user-profile-hook/useUserData";
 import {HeaderItems} from "@/components/header/header-items";
 import {Avatar} from "@/components/avatar/avatar";
 import Lottie from "lottie-react";
@@ -12,8 +12,8 @@ import {useLoadingStore} from "@/stores/loading/useLoadingStore";
 
 export const Header: React.FC = () => {
     const {data: session} = useSession();
-    const userData = useUserProfile(session);
-    const {loading} = useLoadingStore();
+    const {userData} = useUserData(session);
+    const {loading, initialLoad} = useLoadingStore();
 
     return (
         <div className='flex container flex-col mx-auto mt-10'>
@@ -23,10 +23,10 @@ export const Header: React.FC = () => {
                 </h1>
                 <div className='flex justify-center items-center mr-5 gap-2'>
                     <HeaderItems/>
-                    {loading ?
+                    {loading && initialLoad ?
                         <Lottie animationData={animatedLogo} className='w-12 h-12 animate-pulse'/>
                         :
-                        <Avatar className={`w-12 h-12 ${loading ? 'border-none' : 'border-4'}`}
+                        <Avatar className={`w-12 h-12`}
                                 src={userData?.avatar_url} alt='Profile Image'/>
                     }
                 </div>
