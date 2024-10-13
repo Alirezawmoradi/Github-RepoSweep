@@ -35,13 +35,22 @@ export const {handlers, signIn, signOut, auth} = NextAuth({
             return session;
         },
         authorized: async ({auth, request}) => {
+            const url = new URL(request.nextUrl)
+
             const isAuthorized = !!auth?.accessToken;
 
             const isPrivateRoute = request.nextUrl.pathname.startsWith('/dashboard');
 
             if (!isAuthorized && isPrivateRoute) {
-                const url = new URL(request.nextUrl)
                 url.pathname = '/'
+                return Response.redirect(url)
+            }
+
+            const authRoute = ['/'];
+            const isAuthRoute = authRoute.includes(request.nextUrl.pathname)
+
+            if (isAuthorized && isAuthRoute) {
+                url.pathname = '/dashboard'
                 return Response.redirect(url)
             }
 
