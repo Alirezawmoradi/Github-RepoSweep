@@ -10,7 +10,7 @@ import {Background} from "@/components/background/background";
 import {Header} from "@/components/header/header";
 import {useLoadingStore} from "@/stores/loading/useLoadingStore";
 import SkeletonCard from "@/components/loading/skeleton-card/skeleton-card";
-import {useUserData} from "@/utils/user-profile-hook/useUserData";
+import {useUserData} from "@/hooks/user-profile-hook/useUserData";
 
 
 export const UserDashboard = () => {
