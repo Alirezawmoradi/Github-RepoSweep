@@ -1,5 +1,5 @@
 import React from "react";
-import {useUserData} from "@/utils/user-profile-hook/useUserData";
+import {useUserData} from "@/hooks/user-profile-hook/useUserData";
 import {useSession} from "next-auth/react";
 import {useModalStore} from "@/stores/modal/useModalStore";
 import {useRepoStore} from "@/stores/repository/useRepoStore";
