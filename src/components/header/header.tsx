@@ -3,7 +3,7 @@ import React from "react";
 import {TextAnimation} from "@/components/text-animation/text-animation";
 import {AnimatedPlanet} from "@/components/animated-planet/animated-planet";
 import {useSession} from "next-auth/react";
-import {useUserData} from "@/hooks/user-profile-hook/useUserData";
+import {useUserData} from "@/utils/user-profile-hook/useUserData";
 import {HeaderItems} from "@/components/header/header-items";
 import {Avatar} from "@/components/avatar/avatar";
 import Lottie from "lottie-react";
