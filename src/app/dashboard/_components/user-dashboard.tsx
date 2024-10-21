@@ -11,6 +11,7 @@ import {Header} from "@/components/header/header";
 import {useLoadingStore} from "@/stores/loading/useLoadingStore";
 import SkeletonCard from "@/components/loading/skeleton-card/skeleton-card";
 import {useUserData} from "@/hooks/user-profile-hook/useUserData";
+import {ToastContainer} from "react-toastify";
 
 
 export const UserDashboard = () => {
@@ -30,47 +31,62 @@ export const UserDashboard = () => {
     };
 
     return (
-        <div className='relative'>
-            <Background/>
-            <Header/>
-            <div className='container grid md:grid-cols-11 grid-rows-[1fr 1fr] pt-20 gap-10 py-10'>
-                <DashboardSidebar/>
-                <div className='col-span-10 xl:col-span-8'>
-                    <div className='flex flex-col px-10  w-full container'>
-                        <div className='relative flex flex-col gap-6'>
-                            {loading && initialLoad ?
-                                Array.from({length: 10}, (_, index) => (
-                                    <SkeletonCard key={index}/>
-                                ))
-                                :
-                                repos.map((repo) => (
-                                    <Card
-                                        key={repo.id}
-                                        {...repo}
-                                        onSelect={() => handleSelectRepo(repo.id)}
-                                        isSelected={selectedRepos.has(repo.id)}
-                                    />
-                                ))}
-                            {repos.length > 0 && (
-                                <div
-                                    className={`flex justify-center mt-10 ${loading && initialLoad ? 'hidden' : 'block'}`}>
-                                    <PaginationButton
-                                        onClick={() => paginate(currentPage - 1)}
-                                        disabled={currentPage === 1}
-                                        text='< Previous'
-                                    />
-                                    <PaginationButton
-                                        onClick={() => paginate(currentPage + 1)}
-                                        disabled={currentPage >= totalPages}
-                                        text='Next >'
-                                    />
-                                </div>
-                            )}
+        <>
+            <div className='relative'>
+                <Background/>
+                <Header/>
+                <div className='container grid md:grid-cols-11 grid-rows-[1fr 1fr] pt-20 gap-10 py-10'>
+                    <DashboardSidebar/>
+                    <div className='col-span-10 xl:col-span-8'>
+                        <div className='flex flex-col px-10  w-full container'>
+                            <div className='relative flex flex-col gap-6'>
+                                {loading && initialLoad ?
+                                    Array.from({length: 10}, (_, index) => (
+                                        <SkeletonCard key={index}/>
+                                    ))
+                                    :
+                                    repos.map((repo) => (
+                                        <Card
+                                            key={repo.id}
+                                            {...repo}
+                                            onSelect={() => handleSelectRepo(repo.id)}
+                                            isSelected={selectedRepos.has(repo.id)}
+                                        />
+                                    ))}
+                                {repos.length > 0 && (
+                                    <div
+                                        className={`flex justify-center mt-10 ${loading && initialLoad ? 'hidden' : 'block'}`}>
+                                        <PaginationButton
+                                            onClick={() => paginate(currentPage - 1)}
+                                            disabled={currentPage === 1}
+                                            text='< Previous'
+                                        />
+                                        <PaginationButton
+                                            onClick={() => paginate(currentPage + 1)}
+                                            disabled={currentPage >= totalPages}
+                                            text='Next >'
+                                        />
+                                    </div>
+                                )}
+                            </div>
                         </div>
                     </div>
+                    <Modal/>
                 </div>
-                <Modal/>
             </div>
-        </div>
+            <ToastContainer
+                position="bottom-left"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+                style={{zIndex: 10000, fontSize: '14px'}}
+            />
+        </>
     )
 }
