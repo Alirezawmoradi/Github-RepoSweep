@@ -74,9 +74,10 @@ export const DashboardSidebar: React.FC = () => {
                 <div className="flex justify-between mt-10 relative">
                     <button
                         onClick={openModal}
-                        className={`bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded ${loading && initialLoad ? 'hidden' : 'block'}`}
+                        className={`bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded transition-colors duration-500 ${loading && initialLoad ? 'hidden' : 'block disabled:bg-red-900/50 disabled:text-gray-500'}`}
+                        disabled={selectedRepoCount === 0}
                     >
-                        Bulk Remove Selected
+                        Remove Selected Repos
                         {
                             selectedRepoCount > 0 && (
                                 <span
