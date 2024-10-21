@@ -2,6 +2,7 @@ import React from "react";
 import {useRepoStore} from "@/stores/repository/useRepoStore";
 import {useSession} from "next-auth/react";
 import {useModalStore} from "@/stores/modal/useModalStore";
+import {toast} from "react-toastify";
 
 export const Modal: React.FC = () => {
     const {data: session} = useSession();
@@ -14,9 +15,26 @@ export const Modal: React.FC = () => {
 
     if (!isModalOpen) return null;
 
-    const onConfirm = () => {
-        handleBulkRemove(session, repos);
+    const onConfirm = async () => {
         closeModal();
+        await toast.promise(
+            handleBulkRemove(session, repos),
+            {
+                pending: 'Removing repositories...',
+                success: 'Repositories successfully removed!',
+                error: 'Failed to remove repositories!',
+            },
+            {
+                position: "bottom-left",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            }
+        );
     };
 
     return (
