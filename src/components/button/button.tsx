@@ -8,7 +8,7 @@ export const Button: React.FC<ButtonProps> = ({
                                                   selectedRepoCount = 0,
                                                   className
                                               }) => {
-    const baseStyles = "font-bold py-2 px-4 rounded transition-colors duration-300 relative";
+    const baseStyles = "font-bold py-2 px-4 rounded transition-colors duration-300 relative cursor-pointer";
 
     const styles = {
         default: "bg-red-500 hover:bg-red-600 text-white",
