@@ -57,7 +57,7 @@ export const Modal: React.FC = () => {
                     </Button>
                     <Button
                         onClick={onConfirm}
-                        type='default'
+                        type='confirm'
                     >
                         Remove
                     </Button>
