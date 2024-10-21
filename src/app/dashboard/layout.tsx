@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
     return (
