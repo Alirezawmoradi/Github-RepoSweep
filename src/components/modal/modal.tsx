@@ -3,6 +3,7 @@ import {useRepoStore} from "@/stores/repository/useRepoStore";
 import {useSession} from "next-auth/react";
 import {useModalStore} from "@/stores/modal/useModalStore";
 import {toast} from "react-toastify";
+import {Button} from "@/components/button/button";
 
 export const Modal: React.FC = () => {
     const {data: session} = useSession();
@@ -47,19 +48,19 @@ export const Modal: React.FC = () => {
                         <li key={name}>{name}</li>
                     ))}
                 </ul>
-                <div className="mt-6 flex justify-end">
-                    <button
+                <div className="mt-6 flex justify-end gap-4">
+                    <Button
                         onClick={closeModal}
-                        className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded mr-2"
+                        type='cancel'
                     >
                         Cancel
-                    </button>
-                    <button
+                    </Button>
+                    <Button
                         onClick={onConfirm}
-                        className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
+                        type='default'
                     >
                         Remove
-                    </button>
+                    </Button>
                 </div>
             </div>
         </div>

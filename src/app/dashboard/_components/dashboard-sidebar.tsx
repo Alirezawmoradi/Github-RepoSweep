@@ -7,6 +7,7 @@ import {Avatar} from "@/components/avatar/avatar";
 import {useLoadingStore} from "@/stores/loading/useLoadingStore";
 import Lottie from "lottie-react";
 import animatedLogo from "../../../../public/Animated-Github.json";
+import {Button} from "@/components/button/button";
 
 
 export const DashboardSidebar: React.FC = () => {
@@ -71,21 +72,15 @@ export const DashboardSidebar: React.FC = () => {
                         {userData?.followers || 0} followers · {userData?.following || 0} following
                     </p>
                 )}
-                <div className="flex justify-between mt-10 relative">
-                    <button
+                <div className={`flex justify-between mt-10 relative ${loading  && initialLoad ? 'hidden' : 'block'}`}>
+                    <Button
                         onClick={openModal}
-                        className={`bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded transition-colors duration-500 ${loading && initialLoad ? 'hidden' : 'block disabled:bg-red-900/50 disabled:text-gray-500'}`}
-                        disabled={selectedRepoCount === 0}
+                        type='default'
+                        selectedRepoCount={selectedRepoCount}
+                        className='disabled:bg-red-900/50 disabled:text-gray-500'
                     >
                         Remove Selected Repos
-                        {
-                            selectedRepoCount > 0 && (
-                                <span
-                                    className="absolute top-0 right-0 bg-white text-red-500 rounded-full px-2 text-xs font-bold translate-x-1/2 -translate-y-1/2">
-                                    {selectedRepoCount}
-                                </span>
-                            )}
-                    </button>
+                    </Button>
                 </div>
             </div>
         </div>
