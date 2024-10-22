@@ -39,11 +39,11 @@ export const Modal: React.FC = () => {
     };
 
     return (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center max-sm:px-5">
             <div className="bg-white p-6 rounded shadow-md">
                 <h2 className="text-xl font-bold mb-4">Confirm Bulk Remove</h2>
                 <p>Are you sure you want to remove the selected repositories?</p>
-                <ul className="list-inside my-4">
+                <ul className="list-inside my-4 max-sm:text-sm">
                     {selectedRepoNames.map((name) => (
                         <li key={name}>{name}</li>
                     ))}

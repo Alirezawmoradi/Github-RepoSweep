@@ -18,15 +18,15 @@ export const Header: React.FC = () => {
     return (
         <div className='flex container flex-col mx-auto mt-10'>
             <div className='flex flex-row justify-center items-center'>
-                <h1 className="text-white font-bold text-center ml-auto mr-12">
+                <h1 className="text-white font-bold text-center ml-auto mr-12 hidden xl:block">
                     <TextAnimation text={`  Welcome to Your Dashboard, ${session?.user?.name}!`}/>
                 </h1>
                 <div className='flex justify-center items-center mr-5 gap-2'>
                     <HeaderItems/>
                     {loading && initialLoad ?
-                        <Lottie animationData={animatedLogo} className='w-12 h-12 animate-pulse'/>
+                        <Lottie animationData={animatedLogo} className='w-12 h-12 animate-pulse max-sm:hidden'/>
                         :
-                        <Avatar className={`w-12 h-12`}
+                        <Avatar className={`w-12 h-12 max-sm:hidden`}
                                 src={userData?.avatar_url} alt='Profile Image'/>
                     }
                 </div>

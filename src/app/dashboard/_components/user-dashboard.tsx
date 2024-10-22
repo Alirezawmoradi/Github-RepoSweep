@@ -35,7 +35,7 @@ export const UserDashboard = () => {
             <div className='relative'>
                 <Background/>
                 <Header/>
-                <div className='container grid md:grid-cols-11 grid-rows-[1fr 1fr] pt-20 gap-10 py-10'>
+                <div className='container flex flex-col justify-center max-sm:items-center xl:grid xl:grid-cols-11 pt-20 gap-10 py-10'>
                     <DashboardSidebar/>
                     <div className='col-span-10 xl:col-span-8'>
                         <div className='flex flex-col px-10  w-full container'>
@@ -55,7 +55,7 @@ export const UserDashboard = () => {
                                     ))}
                                 {repos.length > 0 && (
                                     <div
-                                        className={`flex justify-center mt-10 ${loading && initialLoad ? 'hidden' : 'block'}`}>
+                                        className={`flex justify-center mt-10 max-sm:text-sm ${loading && initialLoad ? 'hidden' : 'block'}`}>
                                         <PaginationButton
                                             onClick={() => paginate(currentPage - 1)}
                                             disabled={currentPage === 1}
