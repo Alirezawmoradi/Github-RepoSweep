@@ -16,7 +16,7 @@ export const HeroSection = () => {
             setIsFlying(true);
             setTimeout(() => {
                 signIn('github', { callbackUrl: '/dashboard' });
-            }, 0);
+            }, 7300);
         } else {
             signIn('github', { callbackUrl: '/dashboard' });
         }
