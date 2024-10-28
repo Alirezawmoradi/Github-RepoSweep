@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🌌 RepoSweep - Simplify Your GitHub Repositories
 
-## Getting Started
+![RepoSweep Banner](./public/images/codercat.png)
 
-First, run the development server:
+## About RepoSweep
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+RepoSweep is a tool designed to keep your GitHub repositories organized and clutter-free. Whether you're a developer
+juggling multiple projects or an open-source enthusiast, RepoSweep lets you **bulk delete** repositories directly from
+your GitHub account.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### ✨ Features
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- **Bulk Repository Management**: Easily delete multiple repositories at once, streamlining your workflow.
+- **GitHub Authentication**: Secure access with GitHub OAuth.
+- **User-Friendly Dashboard**: A sleek interface to quickly view, select, and delete repositories.
 
-## Learn More
+### 🔧 Tech Stack
 
-To learn more about Next.js, take a look at the following resources:
+- **Next.js** & **React** - for a fast, modern UI.
+- **Zustand** - for state management.
+- **Auth.js** - for seamless GitHub authentication.
+- **Tailwind CSS** - for responsive and beautiful styling.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## 🚀 Getting Started
 
-## Deploy on Vercel
+### Installation
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/Alirezawmoradi/Github-RepoSweep.git
+   cd Github-RepoSweep
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+2. Install dependencies:
+
+   ```bash
+   npm install
+   # or
+   yarn install
+3. Start the application:
+
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+4. Open http://localhost:3000 in your browser to see the app in action.
+
+---
+
+### 🖥️ Usage
+
+1. **Authenticate :** Click "Sign In with GitHub" to log in.
+2. **Select Repositories :** Use the trash icon to select repositories you want to delete.
+3. **Delete :** Click the delete button to remove selected repositories from your GitHub account.
+---
+### 📜 License
+This project is open-source and available under the [MIT license](https://opensource.org/licenses/MIT).
+
+---
+### 🤝 Contributing
+I'm excited to welcome any contributions!  Feel free to open an issue or submit a pull request if you have ideas to improve RepoSweep.
+### Ways to Contribute
+
+- **Report Bugs :** Open an issue with details.
+- **Suggest Enhancements :** Share ideas and features you'd like to see.
+- **Open a Pull Request :** Fork the repo, create a branch, make your changes, and submit a PR.
+
+---
+### 📬 Contact
+Developed by [Alireza Moradi](alirezawmoradi@gmail.com) 
+
+Reach out via [GitHub Issues](https://github.com/Alirezawmoradi/Github-RepoSweep/issues) for questions or suggestions.
+
