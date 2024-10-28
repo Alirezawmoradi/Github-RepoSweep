@@ -10,7 +10,8 @@ const config: Config = {
     extend: {
       backgroundImage: {
         'star-pattern': "url('/images/bg-stars-1.webp')",
-        'hero-pattern': "url('/images/footer-galaxy.webp')"
+        'hero-pattern': "url('/images/footer-galaxy.webp')",
+        'hero': "url('/images/hero-bg.webp')",
       },
     },
   },
