@@ -145,3 +145,15 @@
     animation: pulse 1.5s infinite;
 }
 
+.animate-space-drift {
+    animation: spaceDrift 20s linear infinite;
+}
+
+@keyframes spaceDrift {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(100px, -50px) rotate(15deg); }
+    50% { transform: translate(-50px, 100px) rotate(-15deg); }
+    75% { transform: translate(-100px, -50px) rotate(10deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+}
+
