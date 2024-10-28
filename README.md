@@ -70,7 +70,7 @@ I'm excited to welcome any contributions!  Feel free to open an issue or submit 
 
 ---
 ### 📬 Contact
-Developed by [Alireza Moradi](alirezawmoradi@gmail.com) 
+Developed by [Alireza Moradi]() 
 
 Reach out via [GitHub Issues](https://github.com/Alirezawmoradi/Github-RepoSweep/issues) for questions or suggestions.
 
