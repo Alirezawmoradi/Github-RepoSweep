@@ -15,7 +15,12 @@ export const Header: React.FC<HeaderProps> = ({userData}) => {
         <div className='flex container flex-col mx-auto mt-10'>
             <div className='flex flex-row justify-center items-center'>
                 <h1 className="text-white font-bold text-center ml-auto mr-12 hidden xl:block">
-                    <TextAnimation text={`  Welcome to Your Dashboard, ${userData?.login}!`}/>
+                    {
+                        initialLoad ?
+                            <div className="w-96 h-3.5 bg-gray-700 rounded animate-pulse"/>
+                            :
+                            <TextAnimation text={`  Welcome to Your Dashboard, ${userData?.login}!`}/>
+                    }
                 </h1>
                 <div className='flex justify-center items-center mr-5 gap-2'>
                     <HeaderItems/>
