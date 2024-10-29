@@ -1,3 +1,3 @@
 interface ModalProps {
-    userData: UserProfileProps;
+    userData: UserProfileProps | null;
 }

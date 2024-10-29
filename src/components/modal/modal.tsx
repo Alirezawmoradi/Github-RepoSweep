@@ -5,7 +5,7 @@ import {useModalStore} from "@/stores/modal/useModalStore";
 import {toast} from "react-toastify";
 import {Button} from "@/components/button/button";
 
-export const Modal: React.FC = () => {
+export const Modal: React.FC<ModalProps> = ({userData}) => {
     const {data: session} = useSession();
     const {repos, selectedRepos} = useRepoStore();
     const {isModalOpen} = useModalStore();
@@ -18,8 +18,12 @@ export const Modal: React.FC = () => {
 
     const onConfirm = async () => {
         closeModal();
+        if (!userData) {
+            toast.error("User data is unavailable!");
+            return;
+        }
         await toast.promise(
-            handleBulkRemove(session, repos),
+            handleBulkRemove(session, repos, userData),
             {
                 pending: 'Removing repositories...',
                 success: 'Repositories successfully removed!',

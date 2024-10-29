@@ -31,13 +31,13 @@ export const useRepoStore = create<RepoState>((set,get) => ({
 
         setTotalPages: (totalPages) => set(() => ({totalPages})),
 
-        handleBulkRemove: async (session, repos) => {
+        handleBulkRemove: async (session, repos,userData) => {
             if (!session || !session.accessToken || !session.user?.name) {
                 console.log("No session, access token, or user name found");
                 return;
             }
 
-            const username = session.user.name;
+            const username = userData?.login;
 
             const selectedRepoNames = repos
                 .filter(repo => get().selectedRepos.has(repo.id))

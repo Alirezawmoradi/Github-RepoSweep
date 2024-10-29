@@ -22,6 +22,6 @@ export interface RepoState {
         removeSelectedRepos: () => void;
         setCurrentPage: (page: number) => void;
         setTotalPages: (totalPages: number) => void;
-        handleBulkRemove: (session: Session | null, repos: Repository[]) => Promise<void>;
+        handleBulkRemove: (session: Session | null, repos: Repository[],userData:UserProfileProps) => Promise<void>;
     }
 }

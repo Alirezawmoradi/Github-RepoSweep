@@ -138,7 +138,7 @@ export const UserDashboard = () => {
                             </div>
                         </div>
                     </div>
-                    <Modal/>
+                    <Modal userData={userData}/>
                 </div>
             </div>
             <ToastContainer
