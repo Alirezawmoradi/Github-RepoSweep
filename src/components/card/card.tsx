@@ -63,7 +63,7 @@ export const Card = ({
                                             </button>
                                         </div>
                                     </div>
-                                    <div className={`p-4 relative bg-[#0d1117] ${showLang ? "" : "hidden"}`}>
+                                    <div className={`p-2 relative bg-[#0d1117] ${showLang ? "" : "hidden"}`}>
                                         <div className='flex w-full'>
                                             <div className='text-[#6e7681] text-right'>
                                                 {Array.from({length: 7}, (_, index) => (
@@ -75,7 +75,7 @@ export const Card = ({
                                     <pre className=""><span className="code-editor-line-mktg d-inline-block"><span
                                         className="pl-k">import</span> <span className="pl-s1">{language}</span> <span
                                         className="pl-c1">from</span> <span
-                                        className="pl-c1">'@{language}'</span></span></pre>
+                                        className="pl-c1">&apos;@{language}&apos;</span></span></pre>
                                                 <pre className=""><motion.span variants={container} initial='hidden'
                                                                                whileInView='show'
                                                                                className="code-editor-line-mktg d-inline-block"><motion.span

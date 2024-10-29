@@ -53,7 +53,7 @@ export const HeroSection = () => {
                                     lg:text-left
                                     mx-auto
                                     xl:text-xl xl:w-9/12">
-                            Keep your GitHub workspace clean and organized with RepoSweep. Whether you're managing
+                            Keep your GitHub workspace clean and organized with RepoSweep. Whether you&apos;re managing
                             multiple projects or learning to code, RepoSweep helps you streamline your repository list
                             by allowing easy bulk deletion of repositories. Start building from a clutter-free space
                             today.

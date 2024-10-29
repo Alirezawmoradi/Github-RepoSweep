@@ -17,7 +17,7 @@ export default async function About() {
 
                 <p className="text-left border border-gray-500 bg-gray-800/50 p-6 rounded-xl mt-8 shadow-lg leading-relaxed">
                     RepoSweep helps you keep your GitHub workspace clean and organized.
-                    Whether you're managing multiple projects or learning to code, RepoSweep
+                    Whether you&apos;re managing multiple projects or learning to code, RepoSweep
                     streamlines your repository list by allowing easy bulk deletion of repositories.
                     Start building from a clutter-free space today.
                 </p>
