@@ -6,7 +6,7 @@ export const Info = () => {
     const Routes = [
         {
             name: 'Source Code',
-            href: 'https://github.com/Alirezawmoradi/Github-NextAuth',
+            href: 'https://github.com/Alirezawmoradi/Github-RepoSweep',
             icon: <GithubIcon width={24} height={24}/>,
         }, {
             name: 'About RepoSweep',

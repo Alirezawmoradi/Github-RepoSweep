@@ -34,7 +34,7 @@ export default async function About() {
                     <p className="text-center mb-4">
                         RepoSweep is an open-source project. Feel free to contribute on our GitHub repository.
                     </p>
-                    <Link href='https://github.com/Alirezawmoradi/Github-NextAuth'>
+                    <Link href='https://github.com/Alirezawmoradi/Github-RepoSweep'>
                         <div className="flex gap-2 px-4 py-2 rounded-lg items-center bg-blue-600 hover:bg-blue-500 transition duration-300 shadow-md">
                             <GithubIcon width={24} height={24} />
                             <span>Source Code</span>
