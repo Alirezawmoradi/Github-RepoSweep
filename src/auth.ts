@@ -1,6 +1,6 @@
 import NextAuth from "next-auth"
 import GitHub from "next-auth/providers/github"
-import {clientId, clientSecret} from "@/configs/global";
+import {clientId, clientSecret, Secret} from "@/configs/global";
 
 declare module "next-auth" {
     interface Session {
@@ -14,6 +14,7 @@ declare module "@auth/core/jwt" {
     }
 }
 export const {handlers, signIn, signOut, auth} = NextAuth({
+    secret: Secret,
     providers: [GitHub({
         clientId: clientId,
         clientSecret: clientSecret,
