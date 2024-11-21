@@ -17,6 +17,6 @@ export interface FollowerManagerState {
         toggleSelection: (username: string) => void;
         selectAll: () => void;
         clearSelection: () => void;
-        unfollowSelected: (session: Session) => Promise<void>;
+        unfollowSelected: (session: Session | null) => Promise<void>;
     }
 }
