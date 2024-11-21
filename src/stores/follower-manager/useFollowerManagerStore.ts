@@ -2,7 +2,7 @@ import {create} from "zustand";
 import axios from "axios";
 import {Follower, FollowerManagerState} from "@/stores/follower-manager/follower-manager.types";
 
-export const useFollowerManager = create<FollowerManagerState>((set, get) => ({
+export const useFollowerManagerStore = create<FollowerManagerState>((set, get) => ({
     followers: [],
     following: [],
     notFollowedBack: [],
