@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import 'react-toastify/dist/ReactToastify.css';
 
-export default function DashboardLayout({ children }: { children: ReactNode }) {
+export default function FollowerManagerLayout({ children }: { children: ReactNode }) {
     return (
         <div className="relative min-h-screen bg-black">
             <div
