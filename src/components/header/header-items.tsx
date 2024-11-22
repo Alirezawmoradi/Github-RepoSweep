@@ -4,7 +4,7 @@ import {GithubIcon} from "@/components/icons/GithubIcon";
 import {signOut} from "next-auth/react";
 import {LogoutButton} from "@/components/auth-button/logout-button";
 
-export const HeaderItems: React.FC = () => {
+export const HeaderItems: React.FC<HeaderProps> = ({userData}) => {
     return (
         <div className="flex gap-5 justify-center text-xs xl:text-sm items-center text-gray-300">
             <Link href='https://github.com/Alirezawmoradi/Github-RepoSweep'>
@@ -15,6 +15,9 @@ export const HeaderItems: React.FC = () => {
                 </div>
             </Link>
             <LogoutButton text={'Logout'} onClick={() => signOut()}/>
+            <Link href={`/follower-manager?username=${userData?.login}`}>
+                <h1>Follower Manager</h1>
+            </Link>
         </div>
     )
 }
