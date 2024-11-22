@@ -11,17 +11,17 @@ export const useFollowerManagerStore = create<FollowerManagerState>((set, get) =
 
     actions: {
 
-        fetchFollowersAndFollowing: async (username: string, session) => {
+        fetchFollowersAndFollowing: async (username, session) => {
 
             set({loading: true});
 
             try {
                 const [followersRes, followingRes] = await Promise.all([
                     axios.get<Follower[]>(`https://api.github.com/users/${username}/followers`, {
-                        headers: {Authorization: `Bearer ${session}`},
+                        headers: {Authorization: `Bearer ${session.accessToken}`},
                     }),
                     axios.get<Follower[]>(`https://api.github.com/users/${username}/following`, {
-                        headers: {Authorization: `Bearer ${session}`},
+                        headers: {Authorization: `Bearer ${session.accessToken}`},
                     }),
                 ]);
 
