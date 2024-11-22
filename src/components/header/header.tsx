@@ -23,7 +23,7 @@ export const Header: React.FC<HeaderProps> = ({userData}) => {
                     }
                 </h1>
                 <div className='flex justify-center items-center mr-5 gap-2'>
-                    <HeaderItems/>
+                    <HeaderItems userData={userData}/>
                     {initialLoad ?
                         <Lottie animationData={animatedLogo} className='w-12 h-12 animate-pulse max-sm:hidden'/>
                         :
