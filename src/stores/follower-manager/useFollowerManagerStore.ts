@@ -63,7 +63,7 @@ export const useFollowerManagerStore = create<FollowerManagerState>((set, get) =
                 await Promise.all(
                     selectedUsers.map((username) => {
                         axios.delete(`https://api.github.com/user/following/${username}`, {
-                            headers: {Authorization: `Bearer ${session}`},
+                            headers: {Authorization: `Bearer ${session?.accessToken}`},
                         })
                     })
                 );
